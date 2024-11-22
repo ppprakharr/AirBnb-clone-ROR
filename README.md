@@ -1,0 +1,1 @@
+# Ruby rails, Postgresql, Html css, javascript , tailwind css
