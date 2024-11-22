@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Airbnb" %></title>
+    <title>Sasta Airbnb | Holiday rentals, cabin, beach houses & more</title>
+    <%= favicon_link_tag 'favicon_2.ico', type: 'image/x-icon' %>
+
+    <%# <link rel="icon" href="/favicon.ico" type="image/x-icon"> %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -24,6 +27,7 @@
   </head>
 
   <body>
+    <%= render 'layouts/header'%>
   <%= yield %>
   </body>
 </html>
