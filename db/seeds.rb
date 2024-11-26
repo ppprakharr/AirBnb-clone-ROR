@@ -12,4 +12,5 @@
 
   property.images.attach(io: File.open("db/images/property_#{i+1}.png"), filename: property.name)
   property.images.attach(io: File.open("db/images/property_#{i+5}.png"), filename: property.name)
+  property.images.attach(io: File.open("db/images/property_#{i+9}.png"), filename: property.name)
 end
