@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 namespace :api do
   resources :wishlists, only: [ :create, :destroy ]
 end
+  resources :properties, only: [ :show ]
+
 
   # get "up" => "rails/health#show", as: :rails_health_check
 end
