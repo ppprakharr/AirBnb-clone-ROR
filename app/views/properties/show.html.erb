@@ -1,21 +1,14 @@
-
-
-
 <div class="bg-white">
   <!--
     Mobile menu
 
     Off-canvas menu for mobile, show/hide based on off-canvas menu state.
   -->
-
-
-  
-
   <main class="pt-4">
     <!--Headline + share+like  -->
     <div class="flex justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8 py-2">
-        <h1 class="inline text-2xl font-medium leading-7 text-gray-900 sm:truncate"><%=@property.name%></h1>
-    <div class="space-x-1">
+        <h1 class="inline text-2xl font-medium leading-7 text-gray-900 sm:truncate"><%=@property.description%></h1>
+        <div class="space-x-1">
         <span class="hover:rounded-md px-3 pt-2 pb-3 hover:bg-gray-100 cursor-pointer">
             <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: inline; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 2; overflow: visible;"><path d="m27 18v9c0 1.1046-.8954 2-2 2h-18c-1.10457 0-2-.8954-2-2v-9m11-15v21m-10-11 9.2929-9.29289c.3905-.39053 1.0237-.39053 1.4142 0l9.2929 9.29289" fill="none"></path></svg>
             <span class="underline text-sm ms-1">Share</span>
@@ -42,33 +35,58 @@
             data-wishlist-target="text">
             <%=@property.wishlisted_by?(current_user) ? 'Saved' : 'Save'%></span>
         </span>
-    </div>
+        </div>
      </div>
 
 
+   
     <!-- Image gallery -->
-    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-      <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="h-full w-full object-cover object-center">
+    <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-4 lg:gap-x-2 lg:px-8">
+      <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-l-lg lg:block col-span-2">
+        <%=image_tag @property.images[0], class: "h-full w-full object-cover object-center"%>
       </div>
-      <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-        <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg" alt="Model wearing plain black basic tee." class="h-full w-full object-cover object-center">
+      <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-2">
+        <div class="aspect-h-2 aspect-w-3 overflow-hidden">
+            <%=image_tag @property.images[1], class: "h-full w-full object-cover object-center"%>
         </div>
-        <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg" alt="Model wearing plain gray basic tee." class="h-full w-full object-cover object-center">
+        <div class="aspect-h-2 aspect-w-3 overflow-hidden">
+            <%=image_tag @property.images[2], class: "h-full w-full object-cover object-center"%>
         </div>
       </div>
-      <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
+      <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-2">
+        <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-r-lg">
+            <%=image_tag @property.images[3], class: "h-full w-full object-cover object-center"%>
+        </div>
+        <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-r-lg">
+            <%=image_tag @property.images[4], class: "h-full w-full object-cover object-center"%>
+        </div>
       </div>
     </div>
 
-    <!-- Product info -->
-    <div class="mx-auto max-w-2xl px-4 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pt-16">
+    <!-- Property info -->
+    <div class="mx-auto max-w-2xl px-4 pt-8 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8">
       <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Basic Tee 6-Pack</h1>
-      </div>
+        <h2 class="inline text-xl font-medium leading-6 text-gray-900 sm:truncate"><%= @property.name%>,<%= @property.country%></h2>
+        <div class="mt-1 font-light">
+            <%= @property.guest_count%> guests · <%= @property.bedroom_count%> bedrooms · <%= @property.bed_count%> beds · <%= @property.bathroom_count%> bathrooms
+        </div>
+        <div class="mt-1 flex items-center text-base">
+            <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 32 32" aria-hidden="true" 
+             class="mr-1"
+             role="presentation" focusable="false" 
+             style="display: block; height: 16px; width: 16px; fill: currentcolor;">
+             <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z">   
+             </path>
+             </svg>
+             <%if @property.reviews_count !=0%>
+                <span class="font-medium"><%= @property.average_final_rating.round(2)%> · <span class="undeline"><%=@property.reviews_count%> reviews</span></span>
+             <%else%>
+                <span class="font-light">No reviews yet</span>
+             <%end%>
+        </div>
+
+    </div>
 
       <!-- Options -->
       <div class="mt-4 lg:row-span-3 lg:mt-0">
@@ -241,34 +259,19 @@
 
       <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
         <!-- Description and details -->
-        <div>
+        <div class="mt-4 border-t border-gray-300 pt-10">
           <h3 class="sr-only">Description</h3>
 
           <div class="space-y-6">
-            <p class="text-base text-gray-900">The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+            <p class="text-base text-gray-900"><%=@property.headline.truncate(150)%>.</p>
+            <%if @property.headline.length>150 %>
+            <div class = "flex items-center">
+                <span class="font-medium underline mr-2">Show more</span>
+                <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 12px; width: 12px; display: block; fill: var(--linaria-theme_palette-hof);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
+            </div>
+            <%end%>
           </div>
         </div>
-
-        <div class="mt-10">
-          <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-
-          <div class="mt-4">
-            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-              <li class="text-gray-400"><span class="text-gray-600">Hand cut and sewn locally</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Dyed with our proprietary colors</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Pre-washed &amp; pre-shrunk</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% cotton</span></li>
-            </ul>
-          </div>
-        </div>
-
-        <section aria-labelledby="shipping-heading" class="mt-10">
-          <h2 id="shipping-heading" class="text-sm font-medium text-gray-900">Details</h2>
-
-          <div class="mt-4 space-y-6">
-            <p class="text-sm text-gray-600">The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
-          </div>
-        </section>
       </div>
 
       <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
