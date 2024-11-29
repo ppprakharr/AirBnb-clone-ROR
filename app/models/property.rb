@@ -13,6 +13,8 @@ class Property < ApplicationRecord
 
   has_many_attached :images
 
+  has_rich_text :headline
+
   has_many :reviews, dependent: :destroy
 
   has_many :wishlists, dependent: :destroy

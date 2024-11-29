@@ -369,7 +369,7 @@ DEPENDENCIES
   debug
   devise
   faker
-  image_processing
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   kamal
