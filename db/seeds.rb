@@ -1,3 +1,4 @@
+require 'open-uri'
 headline = <<-HEADLINE
 <div>
 <section class="font-medium">BREAKFAST INCLUDED<br />SeaBatical is a new beachfront property located on Hejamady beach in Karnataka. Located equidistant from Udupi and Mangalore. Guests can take long walks on the beach and experience the mesmerizing sunset on Hejamady beach.<br />The beach stay comprises of a 1 BHK on the ground floor, 2 Studio apartments on the first floor and a Roof Top Heaven with separate entrances for each space.<br />Each of the units are fully private and do not have any shared space within the units.</section>
@@ -25,11 +26,37 @@ headline = <<-HEADLINE
 </div>#{'  '}
 HEADLINE
 
+pictures=[]
+20.times do
+  pictures << URI.parse(Faker::LoremFlickr.image).open
+end
+
 
 user = User.create!({
   email: 'tester@gmail.com',
-  password: '123456'
+  password: '123456',
+  name: Faker::Lorem.unique.sentence(word_count: 2),
+  address_1: Faker::Address.street_address,
+  address_2: Faker::Address.street_name,
+  city: Faker::Address.city,
+  state: Faker::Address.state,
+  country: Faker::Address.country
 })
+user.picture.attach(io: pictures[0], filename: user.name)
+
+19.times do |i|
+  dummy_user = User.create!({
+  email: "tester#{i+3}@gmail.com",
+  password: '123456',
+  name: Faker::Lorem.unique.sentence(word_count: 2),
+  address_1: Faker::Address.street_address,
+  address_2: Faker::Address.street_name,
+  city: Faker::Address.city,
+  state: Faker::Address.state,
+  country: Faker::Address.country
+})
+dummy_user.picture.attach(io: pictures[i+1], filename: dummy_user.name)
+end
 
 6.times do |i|
   property=Property.create!({
@@ -67,7 +94,7 @@ user = User.create!({
       location_rating: (1..5).to_a.sample,
       value_rating: (1..5).to_a.sample,
       property: property,
-      user: user
+      user: User.all.sample
     })
   end
 end
