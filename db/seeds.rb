@@ -26,17 +26,28 @@ headline = <<-HEADLINE
 </div>#{'  '}
 HEADLINE
 
-amenity1=Amenity.create!(name: 'Kitchen')
-amenity1.icon.attach(io: File.open("app/assets/images/amenity_icons/kitchen.svg"), filename: amenity1.name)
+# amenity1=Amenity.create!(name: 'Kitchen')
+# amenity1.icon.attach(io: File.open("app/assets/images/amenity_icons/kitchen.svg"), filename: amenity1.name)
 
-amenity2=Amenity.create!(name: 'WiFi')
-amenity2.icon.attach(io: File.open("app/assets/images/amenity_icons/wifi.svg"), filename: amenity2.name)
+# amenity2=Amenity.create!(name: 'WiFi')
+# amenity2.icon.attach(io: File.open("app/assets/images/amenity_icons/wifi.svg"), filename: amenity2.name)
 
-amenity3=Amenity.create!(name: 'Private Pool')
-amenity3.icon.attach(io: File.open("app/assets/images/amenity_icons/pool.svg"), filename: amenity3.name)
+# amenity3=Amenity.create!(name: 'Private Pool')
+# amenity3.icon.attach(io: File.open("app/assets/images/amenity_icons/pool.svg"), filename: amenity3.name)
 
-amenity4=Amenity.create!(name: 'Essentials', description: 'Towels, bed sheets, soap and toilet paper')
-amenity4.icon.attach(io: File.open("app/assets/images/amenity_icons/essentials.svg"), filename: amenity4.name)
+# amenity4=Amenity.create!(name: 'Essentials', description: 'Towels, bed sheets, soap and toilet paper')
+# amenity4.icon.attach(io: File.open("app/assets/images/amenity_icons/essentials.svg"), filename: amenity4.name)
+
+amenity_data=[
+  { name: 'Kitchen', icon: 'kitchen.svg' },
+  { name: 'Wifi', icon: 'wifi.svg' },
+  { name: 'Private Pool', icon: 'pool.svg' },
+  { name: 'Essentials', description: 'Towels, bed sheets, soap and toilet paper', icon: 'essentials.svg' }
+]
+amenity_data.each do |data|
+  amenity = Amenity.create!(name: data[:name], description: data[:description])
+  amenity.icon.attach(io: File.open("app/assets/images/amenity_icons/#{data[:icon]}"), filename: amenity.name)
+end
 
 pictures=[]
 20.times do
@@ -94,6 +105,10 @@ end
   property.images.attach(io: File.open("db/images/property_10.png"), filename: property.name)
   property.images.attach(io: File.open("db/images/property_11.png"), filename: property.name)
   property.images.attach(io: File.open("db/images/property_12.png"), filename: property.name)
+
+  ((1..(amenity_data.length()-1)).to_a.sample).times do
+    property.amenities << Amenity.all.sample
+  end
 
 
   ((5..10).to_a.sample).times do
