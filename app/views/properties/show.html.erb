@@ -265,10 +265,13 @@
           <div class="space-y-6">
             <p class="text-base text-gray-900"><%=@property.headline.to_plain_text.truncate(250)%>.</p>
             <%if @property.headline.to_plain_text.length>250 %>
-            <div class = "flex items-center">
+            <div class = "flex items-center"
+              data-controller="headlines"
+              data-action="click->headlines#toggleHeadlinesModal">
                 <span class="font-medium underline mr-2">Show more</span>
                 <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 12px; width: 12px; display: block; fill: var(--linaria-theme_palette-hof);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
             </div>
+                <%= render 'shared/modal',modalTriggerid: 'headlines', content: 'properties/headline_modal'%>
             <%end%>
           </div>
         </div>
@@ -280,9 +283,10 @@
     <!-- Reviews -->
     <%=render :partial => 'properties/reviews', :locals => {:property => @property}%>
 
+
     
 
-  </main>
+  </main> 
 
   
 </div>

@@ -8,16 +8,14 @@ export default class extends Controller {
  
 }
 
-show(){
+toggleModal(){
     console.log("button clicked")
-    enter(document.getElementById("modal-wrapper"))
+    const modalTriggerId = this.element.dataset.modalTriggerId
+    // console.log('id is: ',id)
+    toggle(document.getElementById(`modal-${modalTriggerId}-wrapper`))
 
 }
 
-hide(){
-    console.log("button clicked")
-    leave(document.getElementById("modal-wrapper"))
 
-}
 
 }
