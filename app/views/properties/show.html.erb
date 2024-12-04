@@ -103,7 +103,8 @@
                name="checkin"
                id="checkin" 
                class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" 
-               placeholder="Checkin Date">
+               placeholder="<%=Date.tomorrow.strftime("%d/%m/%Y")%>"
+               data-bookings-target="checkin">
             </div>
             <div class="rounded-r-lg px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-400 focus-within:ring-2 focus-within:ring-indigo-600">
               <label for="checkout"
@@ -112,7 +113,8 @@
                name="checkout" 
                id="checkout" 
                class="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" 
-               placeholder="Checkout date">
+               placeholder="<%=(Date.tomorrow + 1.days).strftime("%d/%m/%Y")%>"
+               data-bookings-target="checkout">
             </div>
           </div>
 
@@ -124,11 +126,11 @@
         <div class="mt-4">
           <div class="flex justify-between font-light">
             <p class="underline"> <%=humanized_money_with_symbol(@property.price)%> X <span data-bookings-target="numberOfNights">1</span> night</p>
-            <p>$<span data-bookings-target="grossPrice"><%=humanized_money_with_symbol(@property.price)%> </span></p>
+            <p>$<span data-bookings-target="grossPrice"><%=humanized_money(@property.price)%> </span></p>
           </div>
           <div class="flex justify-between font-light mt-4">
             <p class="underline"> Airbnb service fee</p>
-            <p>$<span data-bookings-target="serviceCharge">8</span></p>
+            <p>$<span data-bookings-target="serviceCharge">0</span></p>
           </div>
         </div>
         <div class="relative py-6">
@@ -138,7 +140,7 @@
         </div>
         <div class="flex justify-between font-medium mt-4">
             <p> Total Fare</p>
-            <p>$<span data-bookings-target="totalFare"></span></p>
+            <p>$<span data-bookings-target="totalFare"><%=humanized_money(@property.price)%></span></p>
           </div>
       </div>
 
