@@ -91,6 +91,7 @@
       <!-- Booking component -->
       <div data-controller = "bookings"
        data-per-night-price = "<%=humanized_money(@property.price)%>"
+       data-blocked-dates = "<%= @blocked_dates%>"
        class="mt-4 lg:mt-0 border rounded-2xl p-6 shadow-xl">
         <h2 class="sr-only">Booking information</h2>
         <p class="text-lg font-light tracking-tight text-gray-900">
