@@ -73,4 +73,16 @@ triggerCheckoutDateChange(selectedDates){
   calculateTotalFare(serviceCharge, grossPrice){
     return parseFloat((serviceCharge + grossPrice).toFixed(2))
   }
+
+  reserveProperty(e){
+    e.preventDefault();
+    const queryData = {
+        checkin_date: '05-12-2024',
+        checkout_date: '07-12-2024'
+    }
+    const queryParam = (new URLSearchParams(queryData)).toString()
+    const baseURL = e.target.dataset.reservePropertyUrl
+    Turbo.visit(`${baseURL}?${queryParam}`)
+
+  }
 }
