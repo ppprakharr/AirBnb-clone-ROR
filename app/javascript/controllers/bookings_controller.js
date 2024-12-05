@@ -77,8 +77,8 @@ triggerCheckoutDateChange(selectedDates){
   reserveProperty(e){
     e.preventDefault();
     const queryData = {
-        checkin_date: '05-12-2024',
-        checkout_date: '07-12-2024'
+        checkin_date: this.checkinTarget.value,
+        checkout_date: this.checkoutTarget.value
     }
     const queryParam = (new URLSearchParams(queryData)).toString()
     const baseURL = e.target.dataset.reservePropertyUrl
