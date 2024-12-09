@@ -86,13 +86,32 @@
              <%end%>
         </div>
 
-    </div>
+        <!-- Description and details -->
+          <div class="mt-4 border-t border-gray-300 mb-8 pt-10">
+            <h3 class="sr-only">Description</h3>
+            <div class="space-y-6">
+              <p class="text-base text-gray-900"><%=@property.headline.to_plain_text.truncate(250)%>.</p>
+              <%if @property.headline.to_plain_text.length>250 %>
+                <div class = "flex items-center"
+                  data-controller="headlines"
+                  data-action="click->headlines#toggleHeadlinesModal">
+                  <span class="font-medium underline mr-2">Show more</span>
+                  <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 12px; width: 12px; display: block; fill: var(--linaria-theme_palette-hof);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
+                </div>
+                <%= render 'shared/modal',modalTriggerid: 'headlines', content: 'properties/headline_modal', content_params: {headline: @property.headline}%>
+              <%end%>
+            </div>
+
+        <!-- Amenities -->
+        <%=render :partial => 'properties/amenities', :locals => {:amenities => @property.amenities}%>
+        </div>
+      </div>
 
       <!-- Booking component -->
       <div data-controller = "bookings"
        data-per-night-price = "<%=humanized_money(@property.price)%>"
        data-blocked-dates = "<%= @blocked_dates%>"
-       class="mt-4 lg:mt-0 border rounded-2xl p-6 shadow-xl">
+       class="mt-4 lg:mt-0 border rounded-2xl p-6 shadow-xl h-min">
         <h2 class="sr-only">Booking information</h2>
         <p class="text-lg font-light tracking-tight text-gray-900">
         <span class="font-semibold text-2xl"><%=humanized_money_with_symbol(@property.price)%></span> night</p>
@@ -146,28 +165,6 @@
             <p>$<span data-bookings-target="totalFare"><%=humanized_money(@property.price)%></span></p>
           </div>
       </div>
-
-      <div class="py-10 lg:col-span-2 lg:col-start-1 lg:pr-8">
-        <!-- Description and details -->
-        <div class="mt-4 border-t border-gray-300 pt-10">
-          <h3 class="sr-only">Description</h3>
-
-          <div class="space-y-6">
-            <p class="text-base text-gray-900"><%=@property.headline.to_plain_text.truncate(250)%>.</p>
-            <%if @property.headline.to_plain_text.length>250 %>
-            <div class = "flex items-center"
-              data-controller="headlines"
-              data-action="click->headlines#toggleHeadlinesModal">
-                <span class="font-medium underline mr-2">Show more</span>
-                <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 12px; width: 12px; display: block; fill: var(--linaria-theme_palette-hof);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
-            </div>
-                <%= render 'shared/modal',modalTriggerid: 'headlines', content: 'properties/headline_modal', content_params: {headline: @property.headline}%>
-            <%end%>
-          </div>
-        </div>
-      </div>
-      <!-- Amenities -->
-    <%=render :partial => 'properties/amenities', :locals => {:amenities => @property.amenities}%>
     </div>
 
     <!-- Reviews -->
