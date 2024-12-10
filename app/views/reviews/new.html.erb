@@ -17,15 +17,28 @@
                     </span>
                 </div>
             </div>
-            <div>
-            </div>
         </div>
-
         <div class="mt-4 relative py-6">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">
                 <div class="w-full border-t border-gray-300"></div>
             </div>
         </div>
-        
+        <div>
+            <%= form_with url: reservation_reviews_path() do |form| %>
+                <%= form.hidden_field :user_id, value: current_user.id %>
+                <%= form.hidden_field :property_id, value: @reservation.property_id %>
+                <%= form.hidden_field :content, value: 'testing' %>
+                <%= form.hidden_field :cleanliness_rating, value: 4%>
+                <%= form.hidden_field :accuracy_rating, value: 4 %>
+                <%= form.hidden_field :checkin_rating, value: 4%>
+                <%= form.hidden_field :communication_rating, value: 2 %>
+                <%= form.hidden_field :location_rating, value: 5 %>
+                <%= form.hidden_field :value_rating, value: 3 %>
+                <%= form.submit "Search" %>
+            <% end %>
+        </div>
+
+
+        </div>
     </main>
 </div>
