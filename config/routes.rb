@@ -10,8 +10,8 @@ end
   resources :booking_payments, only: [:create]
   get 'booking_payments/success', to: "booking_payments#success"
   resources :wishlists, only: [:index]
-  resources :profiles, only: [:show]
-  resources :reservations, only: [:show]
+  resources :profiles, only: [:index]
+  resources :reservations, only: [:index]
 
   # get "up" => "rails/health#show", as: :rails_health_check
 end
