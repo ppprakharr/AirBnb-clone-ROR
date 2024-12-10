@@ -11,7 +11,9 @@ end
   get 'booking_payments/success', to: "booking_payments#success"
   resources :wishlists, only: [:index]
   resources :profiles, only: [:index]
-  resources :reservations, only: [:index]
+  resources :reservations, only: [:index] do
+    resources :reviews, only: [:new]
+  end
 
   # get "up" => "rails/health#show", as: :rails_health_check
 end
