@@ -24,17 +24,24 @@
             </div>
         </div>
         <div>
-            <%= form_with url: reservation_reviews_path() do |form| %>
+            <%= form_with url: reservation_reviews_path do |form| %>
                 <%= form.hidden_field :user_id, value: current_user.id %>
                 <%= form.hidden_field :property_id, value: @reservation.property_id %>
-                <%= form.hidden_field :content, value: 'testing' %>
-                <%= form.hidden_field :cleanliness_rating, value: 4%>
-                <%= form.hidden_field :accuracy_rating, value: 4 %>
-                <%= form.hidden_field :checkin_rating, value: 4%>
-                <%= form.hidden_field :communication_rating, value: 2 %>
-                <%= form.hidden_field :location_rating, value: 5 %>
-                <%= form.hidden_field :value_rating, value: 3 %>
-                <%= form.submit "Search" %>
+                <div class='flex flex-col py-4 max-w-96 rounded-md'>
+                 <%= form.label :content, class: 'block text-sm font-medium text-gray-900 leading-6'%>
+                 <%= form.text_area :content%>
+                </div>
+
+                <div data-controller='rating' class="max-w-96">
+                    <%= render :partial => 'reviews/ratings', :locals => {:form => form, category_rating: 'cleanliness_rating'}%>
+                    <%= render :partial => 'reviews/ratings', :locals => {:form => form, category_rating: 'accuracy_rating'}%>
+                    <%= render :partial => 'reviews/ratings', :locals => {:form => form, category_rating: 'checkin_rating'}%>
+                    <%= render :partial => 'reviews/ratings', :locals => {:form => form, category_rating: 'communication_rating'}%>
+                    <%= render :partial => 'reviews/ratings', :locals => {:form => form, category_rating: 'location_rating'}%>
+                    <%= render :partial => 'reviews/ratings', :locals => {:form => form, category_rating: 'value_rating'}%>
+                </div>
+                
+                <%= form.submit "Submit Review", class:"cursor-pointer mt-5 flex items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
             <% end %>
         </div>
 
