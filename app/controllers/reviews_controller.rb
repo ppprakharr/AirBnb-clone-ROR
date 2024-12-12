@@ -2,7 +2,8 @@ class ReviewsController < ApplicationController
     before_action :set_reservations, only: [:new, :create]
 
     def create
-        @review = current_user.reviews.new(review_params.merge(property_id: @reservation.property_id))
+        data_param = review_params.merge(property_id: @reservation.property_id, reservation_id: @reservation.id)
+        @review = current_user.reviews.new(data_param)
         if @review.save
             redirect_to root_path, notice: 'Review added successfully'
         else
@@ -23,7 +24,6 @@ class ReviewsController < ApplicationController
         :checkin_rating,
         :communication_rating,
         :location_rating,
-        :value_rating,
-        :user_id)
+        :value_rating)
     end
 end

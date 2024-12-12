@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :user
+  belongs_to :reservation
   belongs_to :property, counter_cache: true
 
   validates :content, presence: :true
