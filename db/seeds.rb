@@ -100,7 +100,7 @@ user = User.create!({
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,
     state: Faker::Address.state,
-    country: Faker::Address.country
+    country_code: Faker::Address.country_code
   )
 user.profile.picture.attach(io: pictures[0], filename: user.profile.name)
 
@@ -116,7 +116,7 @@ user.profile.picture.attach(io: pictures[0], filename: user.profile.name)
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,
     state: Faker::Address.state,
-    country: Faker::Address.country
+    country_code: Faker::Address.country_code
   )
 dummy_user.profile.picture.attach(io: pictures[i+1], filename: dummy_user.profile.name)
 end
@@ -131,7 +131,7 @@ end
   address_2: Faker::Address.street_name,
   city: Faker::Address.city,
   state: Faker::Address.state,
-  country: Faker::Address.country,
+  country_code: Faker::Address.country_code,
   guest_count: (2..14).to_a.sample,
   bedroom_count: (1..7).to_a.sample,
   bed_count: (1..5).to_a.sample,
