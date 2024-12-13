@@ -14,10 +14,9 @@ class User < ApplicationRecord
   has_many :reserved_properties, through: :reservations, source: :property, dependent: :destroy
   has_many :payments, through: :reservations, dependent: :destroy
 
-  after_create :new_profile
+  after_create :new_profile_if_not_present
 
-  def new_profile
-    self.profile = Profile.new
-    save!
+  def new_profile_if_not_present
+    create_profile if profile.nil?
   end
 end

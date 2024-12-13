@@ -94,16 +94,15 @@ user = User.create!({
   email: 'tester@gmail.com',
   password: '123456'})
 
-  profile = Profile.create!(
+  user.profile.update!(
     name: Faker::Lorem.unique.sentence(word_count: 2),
     address_1: Faker::Address.street_address,
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,
     state: Faker::Address.state,
-    country: Faker::Address.country,
-    user_id: user.id
+    country: Faker::Address.country
   )
-profile.picture.attach(io: pictures[0], filename: profile.name)
+user.profile.picture.attach(io: pictures[0], filename: user.profile.name)
 
 19.times do |i|
   dummy_user = User.create!({
@@ -111,16 +110,15 @@ profile.picture.attach(io: pictures[0], filename: profile.name)
   password: '123456',
 })
 
-  dummy_profile = Profile.create!(
+  dummy_user.profile.update!(
     name: Faker::Lorem.unique.sentence(word_count: 2),
     address_1: Faker::Address.street_address,
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,
     state: Faker::Address.state,
-    country: Faker::Address.country,
-    user_id: dummy_user.id
+    country: Faker::Address.country
   )
-dummy_profile.picture.attach(io: pictures[i+1], filename: dummy_profile.name)
+dummy_user.profile.picture.attach(io: pictures[i+1], filename: dummy_user.profile.name)
 end
 
 6.times do |i|
