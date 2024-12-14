@@ -24,7 +24,8 @@ class ProfilesController < ApplicationController
             :address_2,
             :city,
             :state,
-            :country_code
+            :country_code,
+            :picture
         )
     end
 end
