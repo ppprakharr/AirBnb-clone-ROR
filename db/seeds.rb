@@ -92,7 +92,7 @@ end
 
 user = User.create!({
   email: 'tester@gmail.com',
-  password: '123456'})
+  password: '123456' })
 
   user.profile.update!(
     name: Faker::Lorem.unique.sentence(word_count: 2),
@@ -107,7 +107,7 @@ user.profile.picture.attach(io: pictures[0], filename: user.profile.name)
 19.times do |i|
   dummy_user = User.create!({
   email: "tester#{i+3}@gmail.com",
-  password: '123456',
+  password: '123456'
 })
 
   dummy_user.profile.update!(
@@ -135,7 +135,8 @@ end
   guest_count: (2..14).to_a.sample,
   bedroom_count: (1..7).to_a.sample,
   bed_count: (1..5).to_a.sample,
-  bathroom_count: (1..3).to_a.sample
+  bathroom_count: (1..3).to_a.sample,
+  user_id: User.all.sample.id
  })
 
   property.images.attach(io: File.open("db/images/property_#{i+1}.png"), filename: property.name)

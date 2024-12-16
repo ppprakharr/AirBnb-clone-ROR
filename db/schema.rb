@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_13_170847) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_16_160301) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -117,6 +117,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_13_170847) do
     t.integer "bedroom_count", default: 0
     t.integer "bed_count", default: 0
     t.integer "bathroom_count", default: 0
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
   create_table "property_amenities", force: :cascade do |t|
@@ -188,6 +190,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_13_170847) do
   add_foreign_key "names", "users"
   add_foreign_key "payments", "reservations"
   add_foreign_key "profiles", "users"
+  add_foreign_key "properties", "users"
   add_foreign_key "property_amenities", "amenities"
   add_foreign_key "property_amenities", "properties"
   add_foreign_key "reservations", "properties"
