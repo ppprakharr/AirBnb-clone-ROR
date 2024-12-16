@@ -17,5 +17,11 @@ end
     resources :reviews, only: [ :new, :create ]
   end
 
+  namespace :owner do
+    resources :properties
+    resources :reservations, only: [ :index ]
+    resources :dashboard, only: [ :index ]
+  end
+
   # get "up" => "rails/health#show", as: :rails_health_check
 end
