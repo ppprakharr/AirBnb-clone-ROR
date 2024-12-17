@@ -18,7 +18,11 @@ end
   end
 
   namespace :owner do
-    resources :properties
+    resources :properties do
+      member do
+        patch "update_amenities"
+      end
+    end
     resources :reservations, only: [ :index ]
     resources :dashboard, only: [ :index ]
   end

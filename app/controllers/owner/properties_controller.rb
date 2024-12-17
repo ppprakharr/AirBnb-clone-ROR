@@ -1,7 +1,7 @@
 module Owner
   class PropertiesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_property, only: [ :edit, :update ]
+    before_action :set_property, only: [ :edit, :update, :update_amenities ]
     def index
       @properties = current_user.properties
     end
@@ -14,6 +14,13 @@ module Owner
       end
     end
 
+    def update_amenities
+      if @property.update!(amenities_params)
+        redirect_to update_amenities_owner_property_path, notice: "Amenity updated successfully"
+      else
+        redirect_back fallback_location: update_amenities_owner_property_path, alert: "Unable to update the Amenity"
+      end
+    end
 
     private
     def set_property
@@ -31,6 +38,10 @@ module Owner
         :headline,
         :description
       )
+    end
+
+    def amenities_params
+      params.require(:property).permit(amenity_ids: [])
     end
   end
 end
