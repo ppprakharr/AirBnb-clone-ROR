@@ -21,11 +21,11 @@ end
     resources :properties do
       member do
         patch "update_amenities"
+        patch "add_image"
         delete "remove_image"
       end
     end
     resources :reservations, only: [ :index ]
-    resources :dashboard, only: [ :index ]
   end
 
   # get "up" => "rails/health#show", as: :rails_health_check
