@@ -6,6 +6,15 @@ module Owner
       @properties = current_user.properties
     end
 
+    def new
+      @property = Property.new
+    end
+
+    def create
+      @property = current_user.properties.create!(new_property_params)
+      redirect_to owner_properties_path, notice: 'Property added successfully'
+    end
+
     def update
       if @property.update!(property_params)
         redirect_to owner_property_path, notice: "Property updated successfully"
@@ -54,6 +63,7 @@ module Owner
     def property_params
       params.require(:property).permit(
         :name,
+        :price,
         :address_1,
         :address_2,
         :city,
@@ -66,6 +76,19 @@ module Owner
 
     def amenities_params
       params.require(:property).permit(amenity_ids: [])
+    end
+
+    def new_property_params
+      params.require(:property).permit(
+        :name,
+        :price,
+        :headline,
+        :description,
+        :address_1,
+        :address_2,
+        :city,
+        :state,
+        :country_code)
     end
   end
 end
