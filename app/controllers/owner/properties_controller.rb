@@ -1,7 +1,7 @@
 module Owner
   class PropertiesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_property, only: [ :edit, :destroy, :update, :update_amenities, :add_image,:remove_image ]
+    before_action :set_property, only: [ :edit, :destroy, :update, :update_amenities, :add_image, :remove_image ]
     def index
       @properties = current_user.properties
     end
@@ -12,7 +12,7 @@ module Owner
 
     def create
       @property = current_user.properties.create!(new_property_params)
-      redirect_to owner_properties_path, notice: 'Property added successfully'
+      redirect_to owner_properties_path, notice: "Property added successfully"
     end
 
     def update
@@ -34,9 +34,9 @@ module Owner
     def add_image
       if params[:property][:images].present?
         @property.images.attach(params[:property][:images])
-        redirect_to edit_owner_property_path, notice: 'Images uploaded sucessfully'
+        redirect_to edit_owner_property_path, notice: "Images uploaded sucessfully"
       else
-        redirect_back fallback_location: edit_owner_property_path, alert: 'Unable to upload the image'
+        redirect_back fallback_location: edit_owner_property_path, alert: "Unable to upload the image"
       end
     end
 
@@ -70,7 +70,11 @@ module Owner
         :state,
         :country,
         :headline,
-        :description
+        :description,
+        :bedroom_count,
+        :bathroom_count,
+        :bed_count,
+        :guest_count
       )
     end
 
@@ -88,7 +92,11 @@ module Owner
         :address_2,
         :city,
         :state,
-        :country_code)
+        :country_code,
+        :bedroom_count,
+        :bathroom_count,
+        :bed_count,
+        :guest_count)
     end
   end
 end
