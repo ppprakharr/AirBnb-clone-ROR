@@ -28,5 +28,7 @@ end
     resources :reservations, only: [ :index ]
   end
 
+  get "/search", to: "search#index"
+
   # get "up" => "rails/health#show", as: :rails_health_check
 end

@@ -32,6 +32,10 @@ class Property < ApplicationRecord
     update_attribute(:average_final_rating, average_rating)
   end
 
+  def self.with_reservation_overlap(checkin_date, checkout_date)
+    where.not(id: Reservation.overlapping_reservations(checkin_date, checkout_date).pluck(:property_id))
+  end
+
   def wishlisted_by?(user = nil)
     return if user.nil?
 

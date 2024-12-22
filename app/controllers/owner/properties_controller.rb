@@ -68,7 +68,7 @@ module Owner
         :address_2,
         :city,
         :state,
-        :country,
+        :country_code,
         :headline,
         :description,
         :bedroom_count,
