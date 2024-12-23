@@ -1,27 +1,25 @@
 #stripe-form {
-font-family: inherit;
-margin-top: 24px;
+    font-family: inherit;
+    margin-top: 24px;
+}
 
-label {
+#stripe-form label {
     font-family: inherit;
     margin-bottom: 24px;
 }
 
-#card-element {
+#stripe-form #card-element {
     border: 1px solid gray;
     border-radius: 8px;
     margin-top: 16px;
-
 }
-input[type="submit"]{
+
+#stripe-form input[type="submit"] {
     background-color: rgb(225, 90, 95);
     color: white;
     margin-top: 24px;
     padding: 10px 24px;
     border-radius: 8px;
     font-size: 16px;
-    font-weight: medium
-    /* class="mt-12 flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"> */
-
-}
+    font-weight: 500; /* Use numeric values for font-weight in CSS */
 }

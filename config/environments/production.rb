@@ -5,6 +5,8 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
+  config.x.stripe.secret_key = ENV["STRIPE_SECRET_KEY"]
+  config.x.stripe.publishable_key = ENV["STRIPE_PUBLISHABLE_KEY"]
 
   # Eager load code on boot for better performance and memory savings (ignored by Rake tasks).
   config.eager_load = true
